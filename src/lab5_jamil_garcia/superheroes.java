@@ -1,27 +1,24 @@
 package lab5_jamil_garcia;
 
+import java.util.ArrayList;
+
 public class superheroes extends Heroes_Villanos{
     
-    private int villanosA;
+    private ArrayList <Villanos> villanosA;
 
     public superheroes() {
         super();
-        villanosA = 0;
     }
 
-    public superheroes(int villanosA, Poder poder, String nombre, int edad, String origen, double altura) {
-        super(poder, nombre, edad, origen, altura);
+    public superheroes(ArrayList<Villanos> villanosA, ArrayList<Poder> poderes, String nombre, int edad, String origen, double altura) {
+        super(poderes, nombre, edad, origen, altura);
         this.villanosA = villanosA;
     }
 
-    public int getVillanosA() {
-        return villanosA;
-    }
+    
 
-    public void setVillanosA(int villanosA) {
-        this.villanosA = villanosA;
-    }
-
+    
+    
     @Override
     public String toString() {
         return super.toString();

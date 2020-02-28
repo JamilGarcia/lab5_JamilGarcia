@@ -2,6 +2,8 @@ package lab5_jamil_garcia;
 
 public class Poder {
 
+    private String nombre;
+    private int codigo; 
     private int nvl;
     private String descrip;
     private boolean mortal;
@@ -9,10 +11,28 @@ public class Poder {
     public Poder() {
     }
 
-    public Poder(int nvl, String descrip, boolean mortal) {
+    public Poder(String nombre, int codigo, int nvl, String descrip, boolean mortal) {
+        this.nombre = nombre;
+        this.codigo = codigo;
         this.nvl = nvl;
         this.descrip = descrip;
         this.mortal = mortal;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public int getNvl() {

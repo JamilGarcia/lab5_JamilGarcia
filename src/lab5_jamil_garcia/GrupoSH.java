@@ -3,14 +3,14 @@ package lab5_jamil_garcia;
 public class GrupoSH {
     
     private int codigo; 
-    private String grupo;
+    private String nombre; 
 
     public GrupoSH() {
     }
 
-    public GrupoSH(int codigo, String grupo) {
+    public GrupoSH(int codigo, String nombre) {
         this.codigo = codigo;
-        this.grupo = grupo;
+        this.nombre = nombre;
     }
 
     public int getCodigo() {
@@ -21,17 +21,17 @@ public class GrupoSH {
         this.codigo = codigo;
     }
 
-    public String getGrupo() {
-        return grupo;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setGrupo(String grupo) {
-        this.grupo = grupo;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @Override
     public String toString() {
-        return grupo;
+        return nombre;
     }
     
     

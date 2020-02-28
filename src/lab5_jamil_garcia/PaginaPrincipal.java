@@ -5,6 +5,8 @@
  */
 package lab5_jamil_garcia;
 
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,12 +16,43 @@ import javax.swing.JOptionPane;
 public class PaginaPrincipal extends javax.swing.JFrame {
 
     boolean vis = true;
+    int cod = 0;
     /**
      * Creates new form PaginaPrincipal
      */
     public PaginaPrincipal() {
         initComponents();
         login.setVisible(vis);
+        DefaultComboBoxModel model1 =
+                (DefaultComboBoxModel) cb_csh_poder1.getModel();
+        
+        DefaultComboBoxModel model2 =
+                (DefaultComboBoxModel) cb_csh_poder2.getModel();
+        
+        DefaultComboBoxModel model3 =
+                (DefaultComboBoxModel) cb_csh_poder3.getModel();
+        
+        DefaultComboBoxModel model4 =
+                (DefaultComboBoxModel) cb_cvi_poder1.getModel();
+        
+        DefaultComboBoxModel model5 =
+                (DefaultComboBoxModel) cb_cvi_poder2.getModel();
+        
+        DefaultComboBoxModel model6 =
+                (DefaultComboBoxModel) cb_cvi_poder3.getModel();
+        
+        DefaultComboBoxModel grupo1 =
+                (DefaultComboBoxModel) cb_csh_grupo.getModel();
+        
+        grupo1.addElement(new GrupoSH(100, "Los Vengadores"));
+        grupo1.addElement(new GrupoSH(200, "Los X-Men"));
+        
+        DefaultComboBoxModel grupo2 =
+                (DefaultComboBoxModel) cb_cvi_grupo.getModel();
+        
+        grupo1.addElement(new GrupoV(100, "The Dark Avengers"));
+        grupo1.addElement(new GrupoV(200, "The Sinister Six"));
+        
     }
 
     /**
@@ -38,9 +71,69 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         tf_login_contra = new javax.swing.JTextField();
         b_login_login = new javax.swing.JButton();
+        CSH = new javax.swing.JFrame();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        tf_csh_nombre = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        tf_csh_edad = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        tf_csh_origen = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        tf_csh_altura = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        cb_csh_poder1 = new javax.swing.JComboBox<>();
+        cb_csh_poder2 = new javax.swing.JComboBox<>();
+        cb_csh_poder3 = new javax.swing.JComboBox<>();
+        b_csh_agregar = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        cb_csh_grupo = new javax.swing.JComboBox<>();
+        CVI = new javax.swing.JFrame();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        tf_cvi_nombre = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        tf_cvi_edad = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        tf_cvi_origen = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        tf_cvi_altura = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        cb_cvi_poder1 = new javax.swing.JComboBox<>();
+        cb_cvi_poder2 = new javax.swing.JComboBox<>();
+        cb_cvi_poder3 = new javax.swing.JComboBox<>();
+        b_cvi_agregar = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        cb_cvi_grupo = new javax.swing.JComboBox<>();
+        jLabel24 = new javax.swing.JLabel();
+        rd_cvi_SI = new javax.swing.JRadioButton();
+        rd_cvi_NO = new javax.swing.JRadioButton();
+        jLabel25 = new javax.swing.JLabel();
+        tf_cvi_muertes = new javax.swing.JTextField();
+        CPOD = new javax.swing.JFrame();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        tf_cpod_nombre = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        sp_cpod_nvl = new javax.swing.JSpinner();
+        jLabel20 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ta_cpod_descrip = new javax.swing.JTextArea();
+        jLabel21 = new javax.swing.JLabel();
+        rd_cpod_SI = new javax.swing.JRadioButton();
+        rd_cpod_NO = new javax.swing.JRadioButton();
+        b_cpod_agregar = new javax.swing.JButton();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jLabel4 = new javax.swing.JLabel();
         b_pp_csuperheroe = new javax.swing.JButton();
         b_pp_cvillano = new javax.swing.JButton();
+        b_pp_cpoder = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jt_pp_arbol = new javax.swing.JTree();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ta_pp_lista = new javax.swing.JTextArea();
+        b_pp_llenar = new javax.swing.JButton();
 
         login.setSize(new java.awt.Dimension(400, 400));
 
@@ -99,6 +192,329 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(75, Short.MAX_VALUE))
         );
 
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel5.setText("Crear SuperHeroe");
+
+        jLabel6.setText("Nombre:");
+
+        jLabel7.setText("Edad:");
+
+        jLabel8.setText("Planeta de Origen:");
+
+        jLabel9.setText("Altura:");
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel10.setText("Poderes:");
+
+        b_csh_agregar.setText("Agregar");
+        b_csh_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_csh_agregarMouseClicked(evt);
+            }
+        });
+
+        jLabel22.setText("Grupo:");
+
+        javax.swing.GroupLayout CSHLayout = new javax.swing.GroupLayout(CSH.getContentPane());
+        CSH.getContentPane().setLayout(CSHLayout);
+        CSHLayout.setHorizontalGroup(
+            CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CSHLayout.createSequentialGroup()
+                .addGroup(CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(CSHLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addGroup(CSHLayout.createSequentialGroup()
+                                .addGroup(CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addGroup(CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel8))
+                                        .addComponent(jLabel6)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tf_csh_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tf_csh_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(CSHLayout.createSequentialGroup()
+                                        .addGroup(CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(tf_csh_origen)
+                                            .addComponent(tf_csh_altura, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+                                        .addGap(111, 111, 111)
+                                        .addComponent(jLabel22)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addGroup(CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel10)
+                                    .addComponent(cb_csh_poder1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cb_csh_poder2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cb_csh_poder3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cb_csh_grupo, 0, 210, Short.MAX_VALUE))))
+                        .addGap(89, 89, 89))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CSHLayout.createSequentialGroup()
+                        .addGap(356, 356, 356)
+                        .addComponent(b_csh_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        CSHLayout.setVerticalGroup(
+            CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CSHLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addGroup(CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tf_csh_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cb_csh_poder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6))
+                .addGap(42, 42, 42)
+                .addGroup(CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_csh_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(cb_csh_poder2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_csh_origen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(cb_csh_poder3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addGroup(CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_csh_altura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel22)
+                    .addComponent(cb_csh_grupo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(b_csh_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(177, Short.MAX_VALUE))
+        );
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel11.setText("Crear Villano");
+
+        jLabel12.setText("Nombre:");
+
+        jLabel13.setText("Edad:");
+
+        jLabel14.setText("Planeta de Origen:");
+
+        jLabel15.setText("Altura:");
+
+        jLabel16.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel16.setText("Poderes:");
+
+        b_cvi_agregar.setText("Agregar");
+        b_cvi_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_cvi_agregarMouseClicked(evt);
+            }
+        });
+
+        jLabel23.setText("Grupo:");
+
+        jLabel24.setText("Carcel:");
+
+        buttonGroup2.add(rd_cvi_SI);
+        rd_cvi_SI.setSelected(true);
+        rd_cvi_SI.setText("SI");
+
+        buttonGroup2.add(rd_cvi_NO);
+        rd_cvi_NO.setText("NO");
+
+        jLabel25.setText("Muertes:");
+
+        javax.swing.GroupLayout CVILayout = new javax.swing.GroupLayout(CVI.getContentPane());
+        CVI.getContentPane().setLayout(CVILayout);
+        CVILayout.setHorizontalGroup(
+            CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CVILayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel11)
+                        .addGroup(CVILayout.createSequentialGroup()
+                            .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel15)
+                                .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel13)
+                                        .addComponent(jLabel14))
+                                    .addComponent(jLabel12)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tf_cvi_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(CVILayout.createSequentialGroup()
+                                        .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(tf_cvi_origen)
+                                            .addComponent(tf_cvi_altura, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel23))
+                                    .addComponent(tf_cvi_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(CVILayout.createSequentialGroup()
+                                    .addGap(337, 337, 337)
+                                    .addComponent(jLabel25)))))
+                    .addGroup(CVILayout.createSequentialGroup()
+                        .addComponent(jLabel24)
+                        .addGap(45, 45, 45)
+                        .addComponent(rd_cvi_SI)
+                        .addGap(47, 47, 47)
+                        .addComponent(rd_cvi_NO)
+                        .addGap(18, 18, 18)
+                        .addComponent(b_cvi_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(93, 93, 93)))
+                .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CVILayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel16)
+                            .addComponent(cb_cvi_poder1, 0, 210, Short.MAX_VALUE)
+                            .addComponent(cb_cvi_poder2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cb_cvi_poder3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cb_cvi_grupo, 0, 210, Short.MAX_VALUE)))
+                    .addGroup(CVILayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tf_cvi_muertes, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(89, 89, 89))
+        );
+        CVILayout.setVerticalGroup(
+            CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CVILayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel16)
+                .addGap(18, 18, 18)
+                .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tf_cvi_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cb_cvi_poder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel12))
+                .addGap(42, 42, 42)
+                .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_cvi_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(cb_cvi_poder2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_cvi_origen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(cb_cvi_poder3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_cvi_altura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(cb_cvi_grupo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23))
+                .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CVILayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel24)
+                            .addComponent(rd_cvi_SI)
+                            .addComponent(rd_cvi_NO)))
+                    .addGroup(CVILayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(b_cvi_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CVILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(CVILayout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tf_cvi_muertes, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CVILayout.createSequentialGroup()
+                            .addGap(41, 41, 41)
+                            .addComponent(jLabel25))))
+                .addContainerGap(178, Short.MAX_VALUE))
+        );
+
+        CPOD.setMinimumSize(new java.awt.Dimension(200, 200));
+
+        jLabel17.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel17.setText("Crear Poder");
+
+        jLabel18.setText("Nombre:");
+
+        jLabel19.setText("Nivel:");
+
+        jLabel20.setText("Descripcion: ");
+
+        ta_cpod_descrip.setColumns(20);
+        ta_cpod_descrip.setRows(5);
+        jScrollPane3.setViewportView(ta_cpod_descrip);
+
+        jLabel21.setText("Mortal:");
+
+        buttonGroup1.add(rd_cpod_SI);
+        rd_cpod_SI.setSelected(true);
+        rd_cpod_SI.setText("SI");
+
+        buttonGroup1.add(rd_cpod_NO);
+        rd_cpod_NO.setText("NO");
+
+        b_cpod_agregar.setText("Agregar");
+        b_cpod_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_cpod_agregarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CPODLayout = new javax.swing.GroupLayout(CPOD.getContentPane());
+        CPOD.getContentPane().setLayout(CPODLayout);
+        CPODLayout.setHorizontalGroup(
+            CPODLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CPODLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(CPODLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addGroup(CPODLayout.createSequentialGroup()
+                        .addGroup(CPODLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel19))
+                        .addGap(18, 18, 18)
+                        .addGroup(CPODLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tf_cpod_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sp_cpod_nvl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(CPODLayout.createSequentialGroup()
+                        .addGroup(CPODLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel21))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(CPODLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(CPODLayout.createSequentialGroup()
+                                .addComponent(rd_cpod_SI)
+                                .addGap(55, 55, 55)
+                                .addComponent(rd_cpod_NO))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(b_cpod_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+        CPODLayout.setVerticalGroup(
+            CPODLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CPODLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel17)
+                .addGap(22, 22, 22)
+                .addGroup(CPODLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(tf_cpod_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(CPODLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(sp_cpod_nvl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(CPODLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel20)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(CPODLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(rd_cpod_SI)
+                    .addComponent(rd_cpod_NO))
+                .addGap(35, 35, 35)
+                .addComponent(b_cpod_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(105, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
@@ -106,8 +522,33 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jLabel4.setText("PAGINA PRINCIPAL");
 
         b_pp_csuperheroe.setText("Crear SuperHeroe");
+        b_pp_csuperheroe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_pp_csuperheroeMouseClicked(evt);
+            }
+        });
 
         b_pp_cvillano.setText("Crear Villano");
+        b_pp_cvillano.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_pp_cvillanoMouseClicked(evt);
+            }
+        });
+
+        b_pp_cpoder.setText("Crear Poder");
+        b_pp_cpoder.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_pp_cpoderMouseClicked(evt);
+            }
+        });
+
+        jScrollPane1.setViewportView(jt_pp_arbol);
+
+        ta_pp_lista.setColumns(20);
+        ta_pp_lista.setRows(5);
+        jScrollPane2.setViewportView(ta_pp_lista);
+
+        b_pp_llenar.setText("Llenado Automatico");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,10 +557,22 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(b_pp_cvillano, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(b_pp_csuperheroe))
-                .addContainerGap(570, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(b_pp_cpoder, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(b_pp_cvillano, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(b_pp_csuperheroe))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(b_pp_llenar)
+                .addGap(381, 381, 381))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +583,15 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addComponent(b_pp_csuperheroe)
                 .addGap(18, 18, 18)
                 .addComponent(b_pp_cvillano)
-                .addContainerGap(505, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(b_pp_cpoder)
+                .addGap(17, 17, 17)
+                .addComponent(b_pp_llenar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
         );
 
         pack();
@@ -140,9 +601,9 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         
         if ((tf_login_usuario.getText()).equals("stanlee")){
             if((tf_login_contra.getText()).equals("spiderman99")){
-                new PaginaPrincipal().setVisible(true);
                 vis = false;
                 login.setVisible(false);
+                new PaginaPrincipal().setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
             }
@@ -151,6 +612,107 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_b_login_loginMouseClicked
+
+    private void b_pp_csuperheroeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_pp_csuperheroeMouseClicked
+        CSH.setVisible(true);
+    }//GEN-LAST:event_b_pp_csuperheroeMouseClicked
+
+    private void b_pp_cvillanoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_pp_cvillanoMouseClicked
+        CVI.setVisible(true);
+    }//GEN-LAST:event_b_pp_cvillanoMouseClicked
+
+    private void b_pp_cpoderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_pp_cpoderMouseClicked
+        CPOD.setVisible(true);
+    }//GEN-LAST:event_b_pp_cpoderMouseClicked
+
+    private void b_csh_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_csh_agregarMouseClicked
+       
+        pod.add(poder.get(cb_csh_poder1.getSelectedIndex()));
+        pod.add(poder.get(cb_csh_poder2.getSelectedIndex()));
+        pod.add(poder.get(cb_csh_poder3.getSelectedIndex()));
+        if(((GrupoSH) cb_csh_grupo.getSelectedItem()).getCodigo() == 100){
+            
+            ArrayList <Villanos> villanosA = new ArrayList();
+            sh.add(new superheroes(villanosA,
+                    pod,
+                    tf_csh_nombre.getText(), 
+                    Integer.parseInt(tf_csh_edad.getText()), 
+                    tf_csh_origen.getText(),
+                    Integer.parseInt(tf_csh_altura.getText())
+            )
+            );
+            
+            
+        } else if (((GrupoSH) cb_csh_grupo.getSelectedItem()).getCodigo() == 200){
+            
+            ArrayList <Villanos> villanosA = new ArrayList();
+            sh.add(new superheroes(villanosA,
+                    pod,
+                    tf_csh_nombre.getText(), 
+                    Integer.parseInt(tf_csh_edad.getText()), 
+                    tf_csh_origen.getText(),
+                    Integer.parseInt(tf_csh_altura.getText())
+            )
+            );
+        }
+        
+    }//GEN-LAST:event_b_csh_agregarMouseClicked
+
+    private void b_cpod_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_cpod_agregarMouseClicked
+        // TODO add your handling code here:
+        boolean boo;
+            if (rd_cpod_SI.isSelected()){
+                boo = true;
+            } else if (rd_cpod_NO.isSelected()){
+                boo = false; 
+            } else {
+                boo = false; 
+            }
+            poder.add(new Poder(tf_cpod_nombre.getText(),
+                    cod+100, 
+                    (Integer) sp_cpod_nvl.getValue(),
+                    ta_cpod_descrip.getText(), boo)
+            );
+    }//GEN-LAST:event_b_cpod_agregarMouseClicked
+
+    private void b_cvi_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_cvi_agregarMouseClicked
+        // TODO add your handling code here:
+        pod.add(poder.get(cb_csh_poder1.getSelectedIndex()));
+        pod.add(poder.get(cb_csh_poder2.getSelectedIndex()));
+        pod.add(poder.get(cb_csh_poder3.getSelectedIndex()));
+        if(((GrupoSH) cb_cvi_grupo.getSelectedItem()).getCodigo() == 100){
+            
+            ArrayList <Villanos> villanosA = new ArrayList();
+            sh.add(new superheroes(villanosA,
+                    pod,
+                    tf_csh_nombre.getText(), 
+                    Integer.parseInt(tf_csh_edad.getText()), 
+                    tf_csh_origen.getText(),
+                    Integer.parseInt(tf_csh_altura.getText())
+            )
+            );
+            
+            
+        } else if (((GrupoV) cb_cvi_grupo.getSelectedItem()).getCodigo() == 200){
+            
+            boolean carcel;
+            if (rd_cvi_SI.isSelected()){
+                carcel = true;
+            } else{
+                carcel = false;
+            }
+            ArrayList <Villanos> villanosA = new ArrayList();
+            vi.add(new Villanos(carcel,
+                    Integer.parseInt(tf_cvi_muertes.getText()),
+                    pod,
+                    tf_csh_nombre.getText(), 
+                    Integer.parseInt(tf_csh_edad.getText()), 
+                    tf_csh_origen.getText(),
+                    Double.parseDouble(tf_csh_altura.getText()),
+            )
+            );
+        }
+    }//GEN-LAST:event_b_cvi_agregarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -188,15 +750,87 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFrame CPOD;
+    private javax.swing.JFrame CSH;
+    private javax.swing.JFrame CVI;
+    private javax.swing.JButton b_cpod_agregar;
+    private javax.swing.JButton b_csh_agregar;
+    private javax.swing.JButton b_cvi_agregar;
     private javax.swing.JButton b_login_login;
+    private javax.swing.JButton b_pp_cpoder;
     private javax.swing.JButton b_pp_csuperheroe;
     private javax.swing.JButton b_pp_cvillano;
+    private javax.swing.JButton b_pp_llenar;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cb_csh_grupo;
+    private javax.swing.JComboBox<String> cb_csh_poder1;
+    private javax.swing.JComboBox<String> cb_csh_poder2;
+    private javax.swing.JComboBox<String> cb_csh_poder3;
+    private javax.swing.JComboBox<String> cb_cvi_grupo;
+    private javax.swing.JComboBox<String> cb_cvi_poder1;
+    private javax.swing.JComboBox<String> cb_cvi_poder2;
+    private javax.swing.JComboBox<String> cb_cvi_poder3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTree jt_pp_arbol;
     private javax.swing.JFrame login;
+    private javax.swing.JRadioButton rd_cpod_NO;
+    private javax.swing.JRadioButton rd_cpod_SI;
+    private javax.swing.JRadioButton rd_cvi_NO;
+    private javax.swing.JRadioButton rd_cvi_SI;
+    private javax.swing.JSpinner sp_cpod_nvl;
+    private javax.swing.JTextArea ta_cpod_descrip;
+    private javax.swing.JTextArea ta_pp_lista;
+    private javax.swing.JTextField tf_cpod_nombre;
+    private javax.swing.JTextField tf_csh_altura;
+    private javax.swing.JTextField tf_csh_edad;
+    private javax.swing.JTextField tf_csh_nombre;
+    private javax.swing.JTextField tf_csh_origen;
+    private javax.swing.JTextField tf_cvi_altura;
+    private javax.swing.JTextField tf_cvi_edad;
+    private javax.swing.JTextField tf_cvi_muertes;
+    private javax.swing.JTextField tf_cvi_nombre;
+    private javax.swing.JTextField tf_cvi_origen;
     private javax.swing.JTextField tf_login_contra;
     private javax.swing.JTextField tf_login_usuario;
     // End of variables declaration//GEN-END:variables
+    
+    ArrayList <Villanos> vi = new ArrayList();
+    ArrayList <superheroes> sh = new ArrayList();
+    ArrayList <superheroes> LA = new ArrayList();
+    ArrayList <superheroes> XM = new ArrayList();
+    ArrayList <superheroes> DA = new ArrayList();
+    ArrayList <superheroes> S6 = new ArrayList();
+    ArrayList <Poder> pod = new ArrayList();
+    ArrayList Carcel = new ArrayList();
+    ArrayList NoPod = new ArrayList();
+    ArrayList <Poder> poder = new ArrayList();
+    
 }

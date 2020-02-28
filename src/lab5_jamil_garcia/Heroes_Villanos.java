@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Heroes_Villanos {
     
     private ArrayList<Poder> poderes;
-    private Poder poder;
     private String nombre;
     private int edad;
     private String origen;
@@ -14,20 +13,12 @@ public class Heroes_Villanos {
     public Heroes_Villanos() {
     }
 
-    public Heroes_Villanos(Poder poder, String nombre, int edad, String origen, double altura) {
-        this.poder = poder;
+    public Heroes_Villanos(ArrayList<Poder> poderes, String nombre, int edad, String origen, double altura) {
+        this.poderes = poderes;
         this.nombre = nombre;
         this.edad = edad;
         this.origen = origen;
         this.altura = altura;
-    }
-
-    public Poder getPoder() {
-        return poder;
-    }
-
-    public void setPoder(Poder poder) {
-        this.poder = poder;
     }
 
     public String getNombre() {
