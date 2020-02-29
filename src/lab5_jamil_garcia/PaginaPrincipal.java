@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -114,6 +116,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         pm_lista = new javax.swing.JPopupMenu();
         pp_eliminar = new javax.swing.JMenuItem();
         pp_agregar = new javax.swing.JMenuItem();
+        carcel = new javax.swing.JFrame();
         jLabel4 = new javax.swing.JLabel();
         b_pp_csuperheroe = new javax.swing.JButton();
         b_pp_cvillano = new javax.swing.JButton();
@@ -124,6 +127,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         lt_pp_List = new javax.swing.JList<>();
         b_pp_actualizar = new javax.swing.JButton();
+        b_pp_carcel = new javax.swing.JButton();
 
         login.setSize(new java.awt.Dimension(400, 400));
 
@@ -181,6 +185,8 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addComponent(b_login_login)
                 .addContainerGap(75, Short.MAX_VALUE))
         );
+
+        CSH.setMinimumSize(new java.awt.Dimension(500, 500));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel5.setText("Crear SuperHeroe");
@@ -279,6 +285,8 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addComponent(b_csh_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(177, Short.MAX_VALUE))
         );
+
+        CVI.setMinimumSize(new java.awt.Dimension(500, 500));
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel11.setText("Crear Villano");
@@ -417,7 +425,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(178, Short.MAX_VALUE))
         );
 
-        CPOD.setMinimumSize(new java.awt.Dimension(200, 200));
+        CPOD.setMinimumSize(new java.awt.Dimension(500, 500));
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel17.setText("Crear Poder");
@@ -505,7 +513,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(105, Short.MAX_VALUE))
         );
 
-        pp_eliminar.setText("jMenuItem1");
+        pp_eliminar.setText("Eliminar");
         pp_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pp_eliminarActionPerformed(evt);
@@ -513,8 +521,24 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         });
         pm_lista.add(pp_eliminar);
 
-        pp_agregar.setText("jMenuItem1");
+        pp_agregar.setText("Agregar");
+        pp_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pp_agregarActionPerformed(evt);
+            }
+        });
         pm_lista.add(pp_agregar);
+
+        javax.swing.GroupLayout carcelLayout = new javax.swing.GroupLayout(carcel.getContentPane());
+        carcel.getContentPane().setLayout(carcelLayout);
+        carcelLayout.setHorizontalGroup(
+            carcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 794, Short.MAX_VALUE)
+        );
+        carcelLayout.setVerticalGroup(
+            carcelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 624, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -564,6 +588,13 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        b_pp_carcel.setText("Encarcelar");
+        b_pp_carcel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_pp_carcelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -574,16 +605,17 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(b_pp_cpoder, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(b_pp_cvillano, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4)
                                     .addComponent(b_pp_csuperheroe))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(b_pp_carcel, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(b_pp_actualizar)
@@ -597,7 +629,9 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(b_pp_csuperheroe)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(b_pp_csuperheroe)
+                    .addComponent(b_pp_carcel))
                 .addGap(18, 18, 18)
                 .addComponent(b_pp_cvillano)
                 .addGap(18, 18, 18)
@@ -657,6 +691,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
             ArrayList<Villanos> villanosA = new ArrayList();
             XM.add(sh.add(new superheroes(villanosA,
+                    (GrupoSH) cb_csh_grupo.getSelectedItem(),
                     pod,
                     tf_csh_nombre.getText(),
                     Integer.parseInt(tf_csh_edad.getText()),
@@ -670,6 +705,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
             ArrayList<Villanos> villanosA = new ArrayList();
             XM.add(sh.add(new superheroes(villanosA,
+                    (GrupoSH) cb_csh_grupo.getSelectedItem(),
                     pod,
                     tf_csh_nombre.getText(),
                     Integer.parseInt(tf_csh_edad.getText()),
@@ -697,7 +733,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 (Integer) sp_cpod_nvl.getValue(),
                 ta_cpod_descrip.getText(), boo)
         );
-        
+
         DefaultComboBoxModel model1
                 = (DefaultComboBoxModel) cb_csh_poder1.getModel();
 
@@ -715,14 +751,14 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
         DefaultComboBoxModel model6
                 = (DefaultComboBoxModel) cb_cvi_poder3.getModel();
-        
+
         model1.addElement(poder);
         model2.addElement(poder);
         model3.addElement(poder);
         model4.addElement(poder);
         model5.addElement(poder);
         model6.addElement(poder);
-        
+
         CPOD.setVisible(false);
     }//GEN-LAST:event_b_cpod_agregarMouseClicked
 
@@ -769,7 +805,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             )
             );
         }
-        
+
         CVI.setVisible(false);
     }//GEN-LAST:event_b_cvi_agregarMouseClicked
 
@@ -781,9 +817,9 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         for (int i = 0; i < vi.size(); i++) {
             todos.add(vi.get(i));
         }
-        
-        DefaultListModel lista =
-                (DefaultListModel) lt_pp_List.getModel();
+
+        DefaultListModel lista
+                = (DefaultListModel) lt_pp_List.getModel();
         for (int i = 0; i < todos.size(); i++) {
             lista.addElement(todos.get(i));
         }
@@ -802,15 +838,71 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
     private void pp_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pp_eliminarActionPerformed
         // TODO add your handling code here:
-        DefaultListModel lista =
-                (DefaultListModel) lt_pp_List.getModel();
-        
-        if(lt_pp_List.getSelectedIndex()>= 0){
+        DefaultListModel lista
+                = (DefaultListModel) lt_pp_List.getModel();
+
+        if (lt_pp_List.getSelectedIndex() >= 0) {
             lista.removeElementAt(lt_pp_List.getSelectedIndex());
             todos.remove(lt_pp_List.getSelectedIndex());
             lt_pp_List.setModel(lista);
         }
     }//GEN-LAST:event_pp_eliminarActionPerformed
+
+    private void pp_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pp_agregarActionPerformed
+        // TODO add your handling code here:
+        if (lt_pp_List.getSelectedIndex() >= 0) {
+            DefaultTreeModel tree
+                    = (DefaultTreeModel) jt_pp_arbol.getModel();
+
+            DefaultMutableTreeNode root
+                    = (DefaultMutableTreeNode) tree.getRoot();
+
+            DefaultListModel lista
+                    = (DefaultListModel) lt_pp_List.getModel();
+
+            String nombre, grupo;
+
+            nombre = ((Heroes_Villanos) lista.get(lt_pp_List.getSelectedIndex())).getNombre();
+            
+            if (todos.get(lt_pp_List.getSelectedIndex()) instanceof superheroes) {
+                grupo = ((superheroes) todos.get(lt_pp_List.getSelectedIndex())).getNombre();
+            } else {
+                grupo = ((superheroes) lista.get(lt_pp_List.getSelectedIndex())).getNombre();
+            }
+            if (todos.get(lt_pp_List.getSelectedIndex()) instanceof Villanos) {
+                grupo = ((Villanos) todos.get(lt_pp_List.getSelectedIndex())).getNombre();
+            } else {
+                grupo = ((Villanos) lista.get(lt_pp_List.getSelectedIndex())).getNombre();
+            }
+            int centinela = -1;
+
+            for (int i = 0; i < root.getChildCount(); i++) {
+                if (root.getChildAt(i).toString().equals(grupo)) {
+                    for (int j = 0; j < root.getChildAt(i).getChildCount(); j++) {
+                        if (root.getChildAt(i).getChildAt(j).toString().equals(nombre)) {
+                            JOptionPane.showMessageDialog(this, "Ya esta agregada");
+                            centinela = -1;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (centinela == -1) {
+                DefaultMutableTreeNode n = new DefaultMutableTreeNode(grupo);
+                DefaultMutableTreeNode s = new DefaultMutableTreeNode(new Heroes_Villanos(nombre));
+                n.add(s);
+                root.add(n);
+            }
+            tree.reload();
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay nada Seleccionado");
+        }
+    }//GEN-LAST:event_pp_agregarActionPerformed
+
+    private void b_pp_carcelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_pp_carcelMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_b_pp_carcelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -856,12 +948,14 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton b_cvi_agregar;
     private javax.swing.JButton b_login_login;
     private javax.swing.JButton b_pp_actualizar;
+    private javax.swing.JButton b_pp_carcel;
     private javax.swing.JButton b_pp_cpoder;
     private javax.swing.JButton b_pp_csuperheroe;
     private javax.swing.JButton b_pp_cvillano;
     private javax.swing.JButton b_pp_llenar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JFrame carcel;
     private javax.swing.JComboBox<String> cb_csh_grupo;
     private javax.swing.JComboBox<String> cb_csh_poder1;
     private javax.swing.JComboBox<String> cb_csh_poder2;
@@ -924,7 +1018,6 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_login_usuario;
     // End of variables declaration//GEN-END:variables
 
-    
     ArrayList todos = new ArrayList();
     ArrayList<Villanos> vi = new ArrayList();
     ArrayList<superheroes> sh = new ArrayList();

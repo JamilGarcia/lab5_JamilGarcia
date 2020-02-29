@@ -13,6 +13,12 @@ public class Heroes_Villanos {
     public Heroes_Villanos() {
     }
 
+    public Heroes_Villanos(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
+
     public Heroes_Villanos(ArrayList<Poder> poderes, String nombre, int edad, String origen, double altura) {
         this.poderes = poderes;
         this.nombre = nombre;
