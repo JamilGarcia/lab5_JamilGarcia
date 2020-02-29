@@ -1,5 +1,7 @@
 package lab5_jamil_garcia;
 
+import java.util.ArrayList;
+
 public class Villanos extends Heroes_Villanos{
     
     private boolean carcel; 
@@ -9,11 +11,13 @@ public class Villanos extends Heroes_Villanos{
         super();
     }
 
-    public Villanos(boolean carcel, int muertes, Poder poder, String nombre, int edad, String origen, double altura) {
-        super(poder, nombre, edad, origen, altura);
+    public Villanos(boolean carcel, int muertes, ArrayList<Poder> poderes, String nombre, int edad, String origen, double altura) {
+        super(poderes, nombre, edad, origen, altura);
         this.carcel = carcel;
         this.muertes = muertes;
     }
+
+   
 
     public boolean isCarcel() {
         return carcel;

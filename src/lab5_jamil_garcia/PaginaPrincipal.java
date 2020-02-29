@@ -5,8 +5,10 @@
  */
 package lab5_jamil_garcia;
 
+import com.sun.xml.internal.ws.policy.sourcemodel.ModelNode;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,42 +19,26 @@ public class PaginaPrincipal extends javax.swing.JFrame {
 
     boolean vis = true;
     int cod = 0;
+
     /**
      * Creates new form PaginaPrincipal
      */
     public PaginaPrincipal() {
         initComponents();
         login.setVisible(vis);
-        DefaultComboBoxModel model1 =
-                (DefaultComboBoxModel) cb_csh_poder1.getModel();
-        
-        DefaultComboBoxModel model2 =
-                (DefaultComboBoxModel) cb_csh_poder2.getModel();
-        
-        DefaultComboBoxModel model3 =
-                (DefaultComboBoxModel) cb_csh_poder3.getModel();
-        
-        DefaultComboBoxModel model4 =
-                (DefaultComboBoxModel) cb_cvi_poder1.getModel();
-        
-        DefaultComboBoxModel model5 =
-                (DefaultComboBoxModel) cb_cvi_poder2.getModel();
-        
-        DefaultComboBoxModel model6 =
-                (DefaultComboBoxModel) cb_cvi_poder3.getModel();
-        
-        DefaultComboBoxModel grupo1 =
-                (DefaultComboBoxModel) cb_csh_grupo.getModel();
-        
+
+        DefaultComboBoxModel grupo1
+                = (DefaultComboBoxModel) cb_csh_grupo.getModel();
+
         grupo1.addElement(new GrupoSH(100, "Los Vengadores"));
         grupo1.addElement(new GrupoSH(200, "Los X-Men"));
-        
-        DefaultComboBoxModel grupo2 =
-                (DefaultComboBoxModel) cb_cvi_grupo.getModel();
-        
+
+        DefaultComboBoxModel grupo2
+                = (DefaultComboBoxModel) cb_cvi_grupo.getModel();
+
         grupo1.addElement(new GrupoV(100, "The Dark Avengers"));
         grupo1.addElement(new GrupoV(200, "The Sinister Six"));
-        
+
     }
 
     /**
@@ -125,15 +111,19 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         b_cpod_agregar = new javax.swing.JButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        pm_lista = new javax.swing.JPopupMenu();
+        pp_eliminar = new javax.swing.JMenuItem();
+        pp_agregar = new javax.swing.JMenuItem();
         jLabel4 = new javax.swing.JLabel();
         b_pp_csuperheroe = new javax.swing.JButton();
         b_pp_cvillano = new javax.swing.JButton();
         b_pp_cpoder = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_pp_arbol = new javax.swing.JTree();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        ta_pp_lista = new javax.swing.JTextArea();
         b_pp_llenar = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        lt_pp_List = new javax.swing.JList<>();
+        b_pp_actualizar = new javax.swing.JButton();
 
         login.setSize(new java.awt.Dimension(400, 400));
 
@@ -243,7 +233,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                                             .addComponent(tf_csh_altura, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
                                         .addGap(111, 111, 111)
                                         .addComponent(jLabel22)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                                 .addGroup(CSHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel10)
                                     .addComponent(cb_csh_poder1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -515,6 +505,17 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(105, Short.MAX_VALUE))
         );
 
+        pp_eliminar.setText("jMenuItem1");
+        pp_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pp_eliminarActionPerformed(evt);
+            }
+        });
+        pm_lista.add(pp_eliminar);
+
+        pp_agregar.setText("jMenuItem1");
+        pm_lista.add(pp_agregar);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
@@ -542,13 +543,26 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        jt_pp_arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane1.setViewportView(jt_pp_arbol);
 
-        ta_pp_lista.setColumns(20);
-        ta_pp_lista.setRows(5);
-        jScrollPane2.setViewportView(ta_pp_lista);
-
         b_pp_llenar.setText("Llenado Automatico");
+
+        lt_pp_List.setModel(new DefaultListModel());
+        lt_pp_List.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lt_pp_ListMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(lt_pp_List);
+
+        b_pp_actualizar.setText("Actualizar Lista");
+        b_pp_actualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_pp_actualizarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -559,20 +573,23 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(b_pp_cpoder, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b_pp_cvillano, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(b_pp_csuperheroe))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(b_pp_llenar)
-                .addGap(381, 381, 381))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(b_pp_cpoder, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(b_pp_cvillano, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(b_pp_csuperheroe))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(b_pp_actualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(b_pp_llenar)
+                        .addGap(381, 381, 381))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -585,12 +602,18 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                 .addComponent(b_pp_cvillano)
                 .addGap(18, 18, 18)
                 .addComponent(b_pp_cpoder)
-                .addGap(17, 17, 17)
-                .addComponent(b_pp_llenar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(b_pp_llenar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addComponent(b_pp_actualizar)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane4))
                 .addContainerGap())
         );
 
@@ -598,19 +621,19 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_login_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_login_loginMouseClicked
-        
-        if ((tf_login_usuario.getText()).equals("stanlee")){
-            if((tf_login_contra.getText()).equals("spiderman99")){
+
+        if ((tf_login_usuario.getText()).equals("stanlee")) {
+            if ((tf_login_contra.getText()).equals("spiderman99")) {
                 vis = false;
                 login.setVisible(false);
                 new PaginaPrincipal().setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, "Usuario incorrecto");
         }
-        
+
     }//GEN-LAST:event_b_login_loginMouseClicked
 
     private void b_pp_csuperheroeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_pp_csuperheroeMouseClicked
@@ -626,53 +649,81 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_b_pp_cpoderMouseClicked
 
     private void b_csh_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_csh_agregarMouseClicked
-       
+
         pod.add(poder.get(cb_csh_poder1.getSelectedIndex()));
         pod.add(poder.get(cb_csh_poder2.getSelectedIndex()));
         pod.add(poder.get(cb_csh_poder3.getSelectedIndex()));
-        if(((GrupoSH) cb_csh_grupo.getSelectedItem()).getCodigo() == 100){
-            
-            ArrayList <Villanos> villanosA = new ArrayList();
-            sh.add(new superheroes(villanosA,
+        if (((GrupoSH) cb_csh_grupo.getSelectedItem()).getCodigo() == 100) {
+
+            ArrayList<Villanos> villanosA = new ArrayList();
+            XM.add(sh.add(new superheroes(villanosA,
                     pod,
-                    tf_csh_nombre.getText(), 
-                    Integer.parseInt(tf_csh_edad.getText()), 
+                    tf_csh_nombre.getText(),
+                    Integer.parseInt(tf_csh_edad.getText()),
                     tf_csh_origen.getText(),
-                    Integer.parseInt(tf_csh_altura.getText())
+                    Double.parseDouble(tf_csh_altura.getText())
+            )
             )
             );
-            
-            
-        } else if (((GrupoSH) cb_csh_grupo.getSelectedItem()).getCodigo() == 200){
-            
-            ArrayList <Villanos> villanosA = new ArrayList();
-            sh.add(new superheroes(villanosA,
+
+        } else if (((GrupoSH) cb_csh_grupo.getSelectedItem()).getCodigo() == 200) {
+
+            ArrayList<Villanos> villanosA = new ArrayList();
+            XM.add(sh.add(new superheroes(villanosA,
                     pod,
-                    tf_csh_nombre.getText(), 
-                    Integer.parseInt(tf_csh_edad.getText()), 
+                    tf_csh_nombre.getText(),
+                    Integer.parseInt(tf_csh_edad.getText()),
                     tf_csh_origen.getText(),
-                    Integer.parseInt(tf_csh_altura.getText())
+                    Double.parseDouble(tf_csh_altura.getText())
+            )
             )
             );
         }
-        
+        CSH.setVisible(false);
     }//GEN-LAST:event_b_csh_agregarMouseClicked
 
     private void b_cpod_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_cpod_agregarMouseClicked
         // TODO add your handling code here:
         boolean boo;
-            if (rd_cpod_SI.isSelected()){
-                boo = true;
-            } else if (rd_cpod_NO.isSelected()){
-                boo = false; 
-            } else {
-                boo = false; 
-            }
-            poder.add(new Poder(tf_cpod_nombre.getText(),
-                    cod+100, 
-                    (Integer) sp_cpod_nvl.getValue(),
-                    ta_cpod_descrip.getText(), boo)
-            );
+        if (rd_cpod_SI.isSelected()) {
+            boo = true;
+        } else if (rd_cpod_NO.isSelected()) {
+            boo = false;
+        } else {
+            boo = false;
+        }
+        poder.add(new Poder(tf_cpod_nombre.getText(),
+                cod + 100,
+                (Integer) sp_cpod_nvl.getValue(),
+                ta_cpod_descrip.getText(), boo)
+        );
+        
+        DefaultComboBoxModel model1
+                = (DefaultComboBoxModel) cb_csh_poder1.getModel();
+
+        DefaultComboBoxModel model2
+                = (DefaultComboBoxModel) cb_csh_poder2.getModel();
+
+        DefaultComboBoxModel model3
+                = (DefaultComboBoxModel) cb_csh_poder3.getModel();
+
+        DefaultComboBoxModel model4
+                = (DefaultComboBoxModel) cb_cvi_poder1.getModel();
+
+        DefaultComboBoxModel model5
+                = (DefaultComboBoxModel) cb_cvi_poder2.getModel();
+
+        DefaultComboBoxModel model6
+                = (DefaultComboBoxModel) cb_cvi_poder3.getModel();
+        
+        model1.addElement(poder);
+        model2.addElement(poder);
+        model3.addElement(poder);
+        model4.addElement(poder);
+        model5.addElement(poder);
+        model6.addElement(poder);
+        
+        CPOD.setVisible(false);
     }//GEN-LAST:event_b_cpod_agregarMouseClicked
 
     private void b_cvi_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_cvi_agregarMouseClicked
@@ -680,39 +731,86 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         pod.add(poder.get(cb_csh_poder1.getSelectedIndex()));
         pod.add(poder.get(cb_csh_poder2.getSelectedIndex()));
         pod.add(poder.get(cb_csh_poder3.getSelectedIndex()));
-        if(((GrupoSH) cb_cvi_grupo.getSelectedItem()).getCodigo() == 100){
-            
-            ArrayList <Villanos> villanosA = new ArrayList();
-            sh.add(new superheroes(villanosA,
-                    pod,
-                    tf_csh_nombre.getText(), 
-                    Integer.parseInt(tf_csh_edad.getText()), 
-                    tf_csh_origen.getText(),
-                    Integer.parseInt(tf_csh_altura.getText())
-            )
-            );
-            
-            
-        } else if (((GrupoV) cb_cvi_grupo.getSelectedItem()).getCodigo() == 200){
-            
+        if (((GrupoV) cb_cvi_grupo.getSelectedItem()).getCodigo() == 100) {
+
             boolean carcel;
-            if (rd_cvi_SI.isSelected()){
+            if (rd_cvi_SI.isSelected()) {
                 carcel = true;
-            } else{
+            } else {
                 carcel = false;
             }
-            ArrayList <Villanos> villanosA = new ArrayList();
-            vi.add(new Villanos(carcel,
+            DA.add(vi.add(new Villanos(carcel,
                     Integer.parseInt(tf_cvi_muertes.getText()),
                     pod,
-                    tf_csh_nombre.getText(), 
-                    Integer.parseInt(tf_csh_edad.getText()), 
+                    tf_csh_nombre.getText(),
+                    Integer.parseInt(tf_csh_edad.getText()),
                     tf_csh_origen.getText(),
-                    Double.parseDouble(tf_csh_altura.getText()),
+                    Double.parseDouble(tf_csh_altura.getText())
+            )
+            )
+            );
+
+        } else if (((GrupoV) cb_cvi_grupo.getSelectedItem()).getCodigo() == 200) {
+
+            boolean carcel;
+            if (rd_cvi_SI.isSelected()) {
+                carcel = true;
+            } else {
+                carcel = false;
+            }
+            S6.add(vi.add(new Villanos(carcel,
+                    Integer.parseInt(tf_cvi_muertes.getText()),
+                    pod,
+                    tf_csh_nombre.getText(),
+                    Integer.parseInt(tf_csh_edad.getText()),
+                    tf_csh_origen.getText(),
+                    Double.parseDouble(tf_csh_altura.getText())
+            )
             )
             );
         }
+        
+        CVI.setVisible(false);
     }//GEN-LAST:event_b_cvi_agregarMouseClicked
+
+    private void b_pp_actualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_pp_actualizarMouseClicked
+        // TODO add your handling code here:
+        for (int i = 0; i < sh.size(); i++) {
+            todos.add(sh.get(i));
+        }
+        for (int i = 0; i < vi.size(); i++) {
+            todos.add(vi.get(i));
+        }
+        
+        DefaultListModel lista =
+                (DefaultListModel) lt_pp_List.getModel();
+        for (int i = 0; i < todos.size(); i++) {
+            lista.addElement(todos.get(i));
+        }
+        lt_pp_List.setModel(lista);
+    }//GEN-LAST:event_b_pp_actualizarMouseClicked
+
+    private void lt_pp_ListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lt_pp_ListMouseClicked
+        // TODO add your handling code here:
+        if (lt_pp_List.getSelectedIndex() >= 0) {
+            if (evt.isMetaDown()) { //Click Derecho
+                pm_lista.show(evt.getComponent(),
+                        evt.getX(), evt.getY());
+            }
+        }
+    }//GEN-LAST:event_lt_pp_ListMouseClicked
+
+    private void pp_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pp_eliminarActionPerformed
+        // TODO add your handling code here:
+        DefaultListModel lista =
+                (DefaultListModel) lt_pp_List.getModel();
+        
+        if(lt_pp_List.getSelectedIndex()>= 0){
+            lista.removeElementAt(lt_pp_List.getSelectedIndex());
+            todos.remove(lt_pp_List.getSelectedIndex());
+            lt_pp_List.setModel(lista);
+        }
+    }//GEN-LAST:event_pp_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -757,6 +855,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton b_csh_agregar;
     private javax.swing.JButton b_cvi_agregar;
     private javax.swing.JButton b_login_login;
+    private javax.swing.JButton b_pp_actualizar;
     private javax.swing.JButton b_pp_cpoder;
     private javax.swing.JButton b_pp_csuperheroe;
     private javax.swing.JButton b_pp_cvillano;
@@ -797,17 +896,20 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTree jt_pp_arbol;
     private javax.swing.JFrame login;
+    private javax.swing.JList<String> lt_pp_List;
+    private javax.swing.JPopupMenu pm_lista;
+    private javax.swing.JMenuItem pp_agregar;
+    private javax.swing.JMenuItem pp_eliminar;
     private javax.swing.JRadioButton rd_cpod_NO;
     private javax.swing.JRadioButton rd_cpod_SI;
     private javax.swing.JRadioButton rd_cvi_NO;
     private javax.swing.JRadioButton rd_cvi_SI;
     private javax.swing.JSpinner sp_cpod_nvl;
     private javax.swing.JTextArea ta_cpod_descrip;
-    private javax.swing.JTextArea ta_pp_lista;
     private javax.swing.JTextField tf_cpod_nombre;
     private javax.swing.JTextField tf_csh_altura;
     private javax.swing.JTextField tf_csh_edad;
@@ -821,16 +923,18 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_login_contra;
     private javax.swing.JTextField tf_login_usuario;
     // End of variables declaration//GEN-END:variables
+
     
-    ArrayList <Villanos> vi = new ArrayList();
-    ArrayList <superheroes> sh = new ArrayList();
-    ArrayList <superheroes> LA = new ArrayList();
-    ArrayList <superheroes> XM = new ArrayList();
-    ArrayList <superheroes> DA = new ArrayList();
-    ArrayList <superheroes> S6 = new ArrayList();
-    ArrayList <Poder> pod = new ArrayList();
+    ArrayList todos = new ArrayList();
+    ArrayList<Villanos> vi = new ArrayList();
+    ArrayList<superheroes> sh = new ArrayList();
+    ArrayList LA = new ArrayList();
+    ArrayList XM = new ArrayList();
+    ArrayList DA = new ArrayList();
+    ArrayList S6 = new ArrayList();
+    ArrayList<Poder> pod = new ArrayList();
     ArrayList Carcel = new ArrayList();
     ArrayList NoPod = new ArrayList();
-    ArrayList <Poder> poder = new ArrayList();
-    
+    ArrayList<Poder> poder = new ArrayList();
+
 }

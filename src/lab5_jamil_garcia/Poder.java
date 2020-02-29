@@ -65,7 +65,7 @@ public class Poder {
 
     @Override
     public String toString() {
-        return "Poder{" + "nvl=" + nvl + ", descrip=" + descrip + ", mortal=" + mortal + '}';
+        return nombre;
     }
 
 }
